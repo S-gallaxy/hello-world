@@ -6,10 +6,10 @@ on:
       - devops
 jobs:
 # This workflow contains multiple jobs
- build:
+ Build:
+  name: BuildApp
 # The type of runner that the job will run on
   runs-on: ubuntu-latest
-  
   steps:
   # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
    - name: Checkout Repository
@@ -20,6 +20,15 @@ jobs:
      with:
        dotnet-version: '6.0'
 
+   - name: Build
+     run: dotnet build --configuration Release
+       
+ PushDockerImage:
+  name: Push Docker Image to ECR
+# The type of runner that the job will run on
+  runs-on: ubuntu-latest
+  
+  steps:
    - name: Configure AWS credentials
      uses: aws-actions/configure-aws-credentials@v1
      with:
@@ -41,3 +50,4 @@ jobs:
      run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
