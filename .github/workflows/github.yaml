@@ -28,5 +28,6 @@ jobs:
        
    - name: Build the Docker image
      run: |
+        docker login --username nikitaw --password ${{ secrets.AWS_POC}} ghcr.io
         docker build . --tag ghcr.io/nikitaw/reactapp-ghcr:latest
         docker push ghcr.io/nikitaw/reactapp-ghcr:latest
