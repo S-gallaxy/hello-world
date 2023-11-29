@@ -28,13 +28,14 @@ jobs:
         aws-region: ap-south-1
 
    - name: Login to Amazon ECR
-     id: login-ecr
+     #id: login-ecr
+     id: ecr-id
      uses: aws-actions/amazon-ecr-login@v1
 
        
    - name: Build, tag, and push image to Amazon ECR
      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REGISTRY: ${{ steps.ecr-id.outputs.registry }}
         ECR_REPOSITORY: helloworld_poc
         IMAGE_TAG: demo_image
      run: |
