@@ -2,6 +2,8 @@
 # Build this image with
 #
 #   docker build -t dotnet-dev:0.0.1 -f Dockerfile .
+
+
 #
 # Create the container with
 #
