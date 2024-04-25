@@ -1,10 +1,13 @@
 name: Build Docker Image
 on:
 # Triggers the workflow on push request events but only for the devops branch
-
-  push:
+  pull_request:
+    types: [opened, reopened, synchronize]
     branches:
-      - devops
+      - KAN-1-Issue1
+  # push:
+  #   branches:
+  #     - devops
 env:
   testPath: test
 jobs:
@@ -38,7 +41,7 @@ jobs:
        dotnet tool install -g dotnet-reportgenerator-globaltool
 
    - name: sonar scan begin
-     run: dotnet sonarscanner begin /k:"S-gallaxy_hello-world" /o:"s-gallaxy" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.token=${{ secrets.SONAR_TOKEN }} /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+     run: dotnet sonarscanner begin /k:"S-gallaxy_hello-world" /o:"s-gallaxy" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.token=${{ secrets.SONAR_TOKEN }} /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml /d:sonar.qualitygate.wait=true
 
    - name: build
      run: dotnet build --configuration Release
