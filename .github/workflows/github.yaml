@@ -8,6 +8,9 @@ on:
   # push:
   #   branches:
   #     - devops
+
+permissions: write-all
+
 env:
   testPath: test
 jobs:
@@ -40,8 +43,8 @@ jobs:
        dotnet tool install --global dotnet-coverage
        dotnet tool install -g dotnet-reportgenerator-globaltool
 
-   - name: sonar scan begin
-     run: dotnet sonarscanner begin /k:"S-gallaxy_hello-world" /o:"s-gallaxy" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.token=${{ secrets.SONAR_TOKEN }} /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+   # - name: sonar scan begin
+   #   run: dotnet sonarscanner begin /k:"S-gallaxy_hello-world" /o:"s-gallaxy" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.token=${{ secrets.SONAR_TOKEN }} /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
 
    - name: build
      run: dotnet build --configuration Release
@@ -51,14 +54,14 @@ jobs:
        dotnet-coverage collect -f xml -o coverage.xml dotnet test $testPath
        reportgenerator -reports:coverage.xml -targetdir:.\report
 
-   - name: Upload test results
-     uses: actions/upload-artifact@v4
-     with:
-        name: hello-world
-        path: .report/index.html
+   # - name: Upload test results
+   #   uses: actions/upload-artifact@v4
+   #   with:
+   #      name: hello-world
+   #      path: .report/index.html
    
-   - name: sonar scan end
-     run: dotnet sonarscanner end /d:sonar.token=${{ secrets.SONAR_TOKEN }}
+   # - name: sonar scan end
+   #   run: dotnet sonarscanner end /d:sonar.token=${{ secrets.SONAR_TOKEN }}
 
 
    - name: Print custom short Sha ID image tag
@@ -66,7 +69,7 @@ jobs:
 
    - name: Buid docker image
      run: |
-       docker build -t myapp:$IMAGE_TAG .
+       docker build -t myapp:v1.0.0 .
 
    - name: Get current time # A step to get the current time so we can use it in release name
      uses: josStorer/get-current-time@v2
