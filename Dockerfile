@@ -2,11 +2,14 @@
 # Build this image with
 #
 #   docker build -t dotnet-dev:0.0.1 -f Dockerfile .
+
+
 #
 # Create the container with
 #
 #   docker create --name dotnet-dev dotnet-dev:0.0.1
 #
+
 # Run the container with 
 #
 #   docker start dotnet-dev
@@ -28,7 +31,7 @@ WORKDIR /app
 # Copy everything
 COPY . ./
 # Restore as distinct layers
-RUN dotnet restore
+RUN dotnet restore "./hello-world/./hello-world.csproj"
 # Run unit tests (if the tests fail the build process is stopped)
 RUN dotnet test
 # Build and publish a release
