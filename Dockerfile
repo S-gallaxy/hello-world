@@ -31,7 +31,7 @@ WORKDIR /app
 # Copy everything
 COPY . ./
 # Restore as distinct layers
-RUN dotnet restore
+RUN dotnet restore "./hello-world/./hello-world.csproj"
 # Run unit tests (if the tests fail the build process is stopped)
 RUN dotnet test
 # Build and publish a release
