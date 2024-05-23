@@ -2,8 +2,9 @@ name: My Workflow
 
 on: 
   workflow_dispatch:
-  # push:
-  #   branches: [ devops ]
+  
+  push:
+     branches: master
 
 jobs:
   build:
@@ -12,3 +13,5 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
+      
