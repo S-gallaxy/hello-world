@@ -67,3 +67,5 @@ echo "} // namespace MyApp" >> ${CSHARP_SOURCE}
 git init
 git add .
 git commit -a -m"initial commit"
+
+
