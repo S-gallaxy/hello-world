@@ -1,0 +1,23 @@
+name: Protect Folder
+on:
+  push:
+    branches:
+      - devops
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2  # this is important, it tells the action to fetch the last 2 commits
+      - name: Check if protected folder has changed
+        run: |
+          PROTECTED_FOLDER='scripts'  # replace with your folder name
+          git diff --quiet HEAD^ HEAD -- $PROTECTED_FOLDER
+          STATUS=$?
+          if [ $STATUS -eq 1 ]
+          then
+            echo "Error: Changes were made to the protected folder $PROTECTED_FOLDER"
+            exit 1
+          fi
