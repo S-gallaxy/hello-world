@@ -16,6 +16,7 @@ jobs:
           PROTECTED_FOLDER='scripts'  # replace with your folder name
           git diff --quiet HEAD^ HEAD -- $PROTECTED_FOLDER
           STATUS=$?
+          echo "STATUS=$STATUS"
           if [ $STATUS -eq 1 ]
           then
             echo "Error: Changes were made to the protected folder $PROTECTED_FOLDER"
