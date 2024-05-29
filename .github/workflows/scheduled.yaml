@@ -1,17 +1,14 @@
 name: Scheduled jobs
 on:
-  push:
-    branches: devops
-  # schedule:
-  #   - cron:  '29 18 * * *'
+  # push:
+  #   branches: devops
+  schedule:
+    - cron:  '45 18 * * *'
       
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Print branch name
-        run: echo "Branch name:${GITHUB_REF#refs/heads/}"
-        
+    steps:        
       - name: Checkout code
         uses: actions/checkout@v2
         with:
