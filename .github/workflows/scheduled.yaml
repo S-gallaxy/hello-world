@@ -1,7 +1,7 @@
 name: Scheduled jobs
 on:
   schedule:
-    - cron:  '* * * * *'
+    - cron:  '29 18 * * *'
       
 jobs:
   build:
@@ -10,7 +10,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: devops
+          ref: ${GITHUB_REF##*/}"
 
       - name: Use secret
         run: |
