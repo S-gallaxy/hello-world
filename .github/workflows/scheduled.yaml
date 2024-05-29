@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print branch name
-        run: echo "Branch name:${GITHUB_REF##*/}"
+        run: echo "Branch name:${GITHUB_REF#refs/heads/}"
         
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: ${GITHUB_REF##*/}
+          ref: ${GITHUB_REF#refs/heads/}
 
       - name: Use secret
         run: |
