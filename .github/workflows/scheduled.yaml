@@ -3,7 +3,7 @@ on:
   # push:
   #   branches: devops
   schedule:
-    - cron:  '45 18 * * *'
+    - cron:  '56 13 * * *'
       
 jobs:
   build:
