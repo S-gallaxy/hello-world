@@ -1,0 +1,18 @@
+name: Scheduled jobs
+on:
+  schedule:
+    - cron:  '* * * * *'
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: devops
+
+      - name: Use secret
+        run: |
+          aws --version
+          kubectl version --client
