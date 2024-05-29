@@ -2,7 +2,7 @@ name: Protect Folder
 on:
   push:
     branches:
-      - devops
+      - devop
 jobs:
   check:
     runs-on: ubuntu-latest
