@@ -1,9 +1,9 @@
 name: Scheduled jobs
 on:
-  # push:
-  #   branches: devops
-  schedule:
-    - cron:  '*/5 * * * *'
+  push:
+    branches: devops
+  # schedule:
+  #   - cron:  '*/5 * * * *'
       
 jobs:
   build:
